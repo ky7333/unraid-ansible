@@ -13,15 +13,11 @@ else
     echo "User $SSH_USERNAME created with no password"
 fi
 
-# Set the authorized keys from the AUTHORIZED_KEYS environment variable (if provided)
-if [ -n "$AUTHORIZED_KEYS" ]; then
-    mkdir -p /home/$SSH_USERNAME/.ssh
-    echo "$AUTHORIZED_KEYS" > /home/$SSH_USERNAME/.ssh/authorized_keys
-    chown -R $SSH_USERNAME:$SSH_USERNAME /home/$SSH_USERNAME/.ssh
-    chmod 700 /home/$SSH_USERNAME/.ssh
-    chmod 600 /home/$SSH_USERNAME/.ssh/authorized_keys
-    echo "Authorized keys set for user $SSH_USERNAME"
-fi
+echo "$AUTHORIZED_KEYS" > /root/.ssh/authorized_keys
+chown -R root:root /root/.ssh
+chmod 700 /root.ssh
+chmod 600 /root/.ssh/authorized_keys
+echo "Authorized keys set for user $SSH_USERNAME"
 
 # Apply additional SSHD configuration if provided
 if [ -n "$SSHD_CONFIG_ADDITIONAL" ]; then
