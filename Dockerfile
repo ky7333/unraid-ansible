@@ -2,7 +2,6 @@ FROM ubuntu:24.04
 
 # Set environment variables to avoid interactive prompts during installation
 ENV DEBIAN_FRONTEND=noninteractive
-ENV SSH_USERNAME="root"
 ENV SSHD_CONFIG_ADDITIONAL=""
 
 # Install OpenSSH server, clean up, create directories, set permissions, and configure SSH
@@ -12,11 +11,6 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && mkdir -p /run/sshd \
     && chmod 755 /run/sshd \
-    && if ! id -u "$SSH_USERNAME" > /dev/null 2>&1; then useradd -ms /bin/bash "$SSH_USERNAME"; fi \
-    && chown -R "$SSH_USERNAME":"$SSH_USERNAME" /home/"$SSH_USERNAME" \
-    && chmod 755 /home/"$SSH_USERNAME" \
-    && mkdir -p /home/"$SSH_USERNAME"/.ssh \
-    && chown "$SSH_USERNAME":"$SSH_USERNAME" /home/"$SSH_USERNAME"/.ssh \
     && echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
 
 # Copy the script to configure the user's password and authorized keys

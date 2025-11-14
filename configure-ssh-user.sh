@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set default values for SSH_USERNAME if not provided
-: ${SSH_USERNAME:=ubuntu}
+: ${SSH_USERNAME:=root}
   ${AUTHORIZED_KEYS:?"Error: AUTHORIZED_KEYS environment variable is not set."}
 : ${SSHD_CONFIG_ADDITIONAL:=""}
 
