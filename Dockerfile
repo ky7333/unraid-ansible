@@ -6,7 +6,7 @@ ENV SSHD_CONFIG_ADDITIONAL=""
 
 # Install OpenSSH server, clean up, create directories, set permissions, and configure SSH
 RUN apt-get update \
-    && apt-get install -y iproute2 iputils-ping libguestfs-tools linux-image-amd64 openssh-server python3-guestfs python3-libvirt python3-lxml telnet \
+    && apt-get install -y iproute2 iputils-ping libguestfs-tools linux-image-generic openssh-server python3-guestfs python3-libvirt python3-lxml telnet \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && mkdir -p /run/sshd \
