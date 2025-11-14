@@ -17,7 +17,7 @@ RUN apt-get update \
     && chmod 755 /home/"$SSH_USERNAME" \
     && mkdir -p /home/"$SSH_USERNAME"/.ssh \
     && chown "$SSH_USERNAME":"$SSH_USERNAME" /home/"$SSH_USERNAME"/.ssh \
-    && echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config \
+    && echo "PasswordAuthentication no" >> /etc/ssh/sshd_config \
     && echo "PermitRootLogin no" >> /etc/ssh/sshd_config
 
 # Copy the script to configure the user's password and authorized keys
